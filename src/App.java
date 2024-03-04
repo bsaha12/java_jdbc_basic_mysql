@@ -1,5 +1,9 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+
+        Database db = new Database("Student") ;
+
+        // first creating a database .. just one time
+        // db.createDatabase();
     }
 }
