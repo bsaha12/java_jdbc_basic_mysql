@@ -10,7 +10,11 @@ public class App {
         // db.deleteDatabase();
 
         // create table once
-        db.createTable("student");
+        // db.createTable("student");
+
+        // db.createData() ;
+
+        db.readData() ;
 
     }
 }

@@ -1,5 +1,7 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Database {
@@ -100,5 +102,50 @@ public class Database {
             e.printStackTrace();
         }
     }////
+
+    public void createData() {
+        // String query = "insert into student values ( 2 , 'steve' , 80 ) , ( 3 ,'tony'
+        // , 100 ) ,( 4 , 'bruce' , 98 ) ;" ; // currently hardcoded
+        String query = "insert into student values ( ? , ? , ? ) ;"; // with prepared statement
+        try {
+            Connection con = DriverManager.getConnection(url, username, password);
+
+            // Statement st = con.createStatement();
+            // st.executeUpdate(query);
+
+            PreparedStatement st = con.prepareStatement(query);
+
+            st.setInt(1, 5);
+            st.setString(2, "Bucky");
+            st.setInt(3, 67);
+
+            st.executeUpdate();
+
+            con.close();
+
+            System.out.println("Data inserted successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//
+
+    public void readData() {
+        String query = "select * from student ;";
+        try {
+            Connection con = DriverManager.getConnection(url, username, password);
+            Statement st = con.createStatement();
+
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+                System.out.println(rs.getString(2) + " : " + rs.getInt(3));
+            }
+            con.close();
+
+            System.out.println("Reading Done Successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//
 
 }
