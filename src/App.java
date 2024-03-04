@@ -14,7 +14,9 @@ public class App {
 
         // db.createData() ;
 
-        db.readData() ;
+        // db.readData() ;
+
+        db.updateData() ;
 
     }
 }

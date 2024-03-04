@@ -148,4 +148,28 @@ public class Database {
         }
     }//
 
+    public void updateData() {
+        String query = "update student set name = ? where id = ?";
+        try {
+            Connection con = DriverManager.getConnection(url, username, password);
+            PreparedStatement st = con.prepareStatement(query);
+            // st.setString(1, "name"); showing error
+            st.setString(1, "batman");
+            st.setInt(2, 5);
+
+            st.executeUpdate();
+
+            con.close();
+
+            System.out.println("Data Updated Successfully");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteData(){
+        
+    }
+
 }
